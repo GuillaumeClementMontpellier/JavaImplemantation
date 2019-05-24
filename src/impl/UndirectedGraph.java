@@ -105,14 +105,14 @@ public class UndirectedGraph implements Graph{
 
 		for (int i = 0; i < this.nbEdge; i++){
 
-			if( (v1 == this.edges[i] && v2 == this.edges[i] )  || 
-				(v1 == this.edges[i] && v2 == this.edges[i] ) ){
+			if( (v1 == this.edges[i].getVertices()[0] && v2 == this.edges[i].getVertices()[1] )  || 
+				(v1 == this.edges[i].getVertices()[1] && v2 == this.edges[i].getVertices()[0] ) ){
 
 				connected = true;
 
 			}
 		}
-
+		return connected;
 	}
 
 	public Vertex[] getNeighbours(int id){
@@ -143,6 +143,8 @@ public class UndirectedGraph implements Graph{
 			}
 			
 		}	
+
+		return result;
 
 	}
 
