@@ -56,9 +56,7 @@ public class UndirectedGraph implements Graph{
 
 			if (deleted){
 				this.edges[i] = this.edges[i-1];
-			}
-
-			if ( !deleted && e == this.edges[i]){
+			} else if ( e == this.edges[i]){
 				deleted = true;
 			}
 
@@ -78,9 +76,7 @@ public class UndirectedGraph implements Graph{
 
 			if (deleted){
 				this.vertices[i] = this.vertices[i-1];
-			}
-
-			if ( !deleted && v == this.vertices[i]){
+			} else if ( v == this.vertices[i] ){
 				deleted = true;
 			}
 
@@ -134,7 +130,7 @@ public class UndirectedGraph implements Graph{
 			
 		}	
 
-		//mettre les voisins
+		//mettre les voisins dans le tab
 		Vertex[] result = new Vertex[nbr];
 		nbr = 0;
 
@@ -148,6 +144,22 @@ public class UndirectedGraph implements Graph{
 			
 		}	
 
+	}
+
+	public int getNbMaxVertex(){
+		return this.nbMaxVertex;
+	}
+
+	public int getNbMaxEdge(){
+		return this.nbMaxEdge;
+	}
+
+	public int getNbVertex(){
+		return this.nbVertex;
+	}
+
+	public int getNbEdge(){
+		return this.nbEdge;
 	}
 
 
