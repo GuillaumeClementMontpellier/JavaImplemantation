@@ -1,0 +1,1 @@
+This code was realized by Jeremie Dumont and Héloïse Sanchez, students in computer sciences and management at Polytech Montpellier. We implement a graph library in order to represent a maze. It was realized during the OODAP (Object Oriented Design And Programming) module between 23 and 24 May 2019. 
