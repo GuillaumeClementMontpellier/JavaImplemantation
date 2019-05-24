@@ -4,7 +4,7 @@ import graph.*;
 
 public class UndirectedGraph implements Graph{
 
-	private Edge[] edges;
+	private UndirectedEdge[] edges;
 	private Vertex[] vertices;
 
 	private int nbMaxEdge;
@@ -14,7 +14,7 @@ public class UndirectedGraph implements Graph{
 
 	public UndirectedGraph(int nbMaxEdge, int nbMaxVertex){
 
-		this.edges = new Edge[nbMaxEdge];
+		this.edges = new UndirectedEdge[nbMaxEdge];
 		this.vertices = new Vertex[nbMaxVertex];
 
 		this.nbEdge = 0;
@@ -27,9 +27,9 @@ public class UndirectedGraph implements Graph{
 
 	public void addEdge(Edge e){
 
-		if(nbEdge < nbMaxEdge){
+		if((nbEdge < nbMaxEdge) && (e instanceof UndirectedEdge)){
 
-			this.edges[this.nbEdge] = e;
+			this.edges[this.nbEdge] = (UndirectedEdge) e;
 
 			this.nbEdge += 1;
 
@@ -94,13 +94,28 @@ public class UndirectedGraph implements Graph{
 
 	public Vertex getVertexById(int id){
 
-		return this.vertices[i];
+		return this.vertices[id];
 
 	}
 
-	public Edge getEdgeById(int id){
+	public UndirectedEdge getEdgeById(int id){
 
-		return this.edges[i];
+		return this.edges[id];
+
+	}
+
+	public boolean connected(Vertex v1, Vertex v2){
+		boolean connected = false;
+
+		for (int i = 0; i < this.nbEdge; i++){
+
+			if( (v1 == this.edges[i] && v2 == this.edges[i] )  || 
+				(v1 == this.edges[i] && v2 == this.edges[i] ) ){
+
+				connected = true;
+
+			}
+		}
 
 	}
 
@@ -109,17 +124,29 @@ public class UndirectedGraph implements Graph{
 		//Chercher le nbr de voisin
 		int nbr = 0;
 
+		Vertex cible = this.getVertexById(id);
+
 		for (int j = 0; j < this.nbVertex; j++) {
 
-			for (int k = 0; k < this.nbEdge; k++){
-
+			if( connected(cible, this.vertices[j])){
+				nbr++;
 			}
 			
-		}
-
-		
+		}	
 
 		//mettre les voisins
+		Vertex[] result = new Vertex[nbr];
+		nbr = 0;
+
+
+		for (int j = 0; j < this.nbVertex; j++) {
+
+			if( connected(cible, this.vertices[j])){
+				result[nbr] = this.vertices[j];
+				nbr++;
+			}
+			
+		}	
 
 	}
 
