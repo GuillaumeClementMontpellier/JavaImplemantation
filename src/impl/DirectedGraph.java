@@ -1,29 +1,34 @@
 package impl;
 
+import graph.*;
+
 public class DirectedGraph implements Graph{
 
-	private Vertex[] vertices = new Vertex[maxVertex];
-	private DirectedEdge[] edges = new DirectedEdge[maxEdge];
+	private Vertex[] vertices;
+	private DirectedEdge[] edges;
 
 	private int maxEdge;
 	private int nbEdge;
 	private int maxVertex;
-	private int nbEdge;
+	private int nbVertex;
 
 	public DirectedGraph(int maxEdge, int maxVertex){
 		this.nbEdge=0;
 		this.nbEdge=0;
+
+		this.vertices = new Vertex[maxVertex];
+		this.edges = new DirectedEdge[maxEdge];
 
 		this.maxEdge=maxEdge;
 		this.maxVertex=maxVertex;
 	}
 
 	public int getNbEdge(){
-		return this.nbEdge
+		return this.nbEdge;
 	}
 
 	public int getNbVertex(){
-		return this.nbVertex
+		return this.nbVertex;
 	}
 
 	public int getMaxVertex(){
@@ -36,7 +41,7 @@ public class DirectedGraph implements Graph{
 
 	public void addEdge(Edge e){
 		if (this.getNbEdge()<maxEdge && (e instanceof DirectedEdge)) {
-			this.edges[this.getNbEdge()]=e;
+			this.edges[this.getNbEdge()]= (DirectedEdge) e;
 			this.nbEdge+=1;
 		}
 		else System.out.println("already max edge");
@@ -55,7 +60,7 @@ public class DirectedGraph implements Graph{
 		for (int i=0; i<this.getNbEdge();i++) {
 			if(find){
 				this.edges[i]=this.edges[i-1];
-				nbEdge-=1
+				nbEdge-=1;
 			} else if (this.edges[i]== e){
 				find=true;
 			}
@@ -67,8 +72,8 @@ public class DirectedGraph implements Graph{
 		for (int i=0; i<this.getNbVertex();i++) {
 			if(find){
 				this.vertices[i]=this.vertices[i-1];
-				nbVertex-=1
-			} else if (this.vertices[i]== e){
+				nbVertex-=1;
+			} else if (this.vertices[i]==v){
 				find=true;
 			}
 		}
@@ -98,7 +103,7 @@ public class DirectedGraph implements Graph{
 		int compteur =0; //on compte le nombre de neighbours
 
 		for (int i=0; i<this.getNbVertex();i++) {
-			if connected(the_vertex,this.vertices[i]){
+			if (connected(the_vertex,this.vertices[i])){
 				compteur++;
 			}
 		}
@@ -107,7 +112,7 @@ public class DirectedGraph implements Graph{
 		compteur=0;
 
 		for (int i=0; i<this.getNbVertex();i++) {
-			if connected(the_vertex,this.vertices[i]){
+			if (connected(the_vertex,this.vertices[i])){
 				neighbours[compteur]=this.vertices[i];
 				compteur++;
 			}
